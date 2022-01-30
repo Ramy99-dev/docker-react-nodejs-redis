@@ -1,4 +1,7 @@
 FROM node:latest
-COPY . .
+WORKDIR /usr/src/app
+COPY package*.json ./
 RUN npm install 
-CMD ["npm","run","dev"]
+COPY . . 
+EXPOSE 7082
+CMD ["npm","start"]
