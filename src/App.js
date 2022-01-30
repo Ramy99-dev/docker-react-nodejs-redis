@@ -7,17 +7,17 @@ function App() {
   let [todos,setTodos] = useState([])
  
   useEffect(async () => {
-    data = await fetch("http://localhost:7082/");
+    data = await fetch("http://localhost:8072/");
     
     let todo = await data.json()
     console.log(todo)
-    setTodos(todo.data)
+    setTodos(todo)
 
   }, [])
   const addTodo = async () => {
     if(input)
     {
-      data = await fetch("http://localhost:7082/", {
+      data = await fetch("http://localhost:8072/", {
       method: 'POST',
       headers: {
 
@@ -33,7 +33,7 @@ function App() {
 
   const removeTodo = async (todo,pos) => {
     
-    data = await fetch(`http://localhost:7082/`, {
+    data = await fetch(`http://localhost:8072/`, {
       method: 'DELETE',
       headers: {
 
@@ -57,7 +57,7 @@ function App() {
         }} className="border-solid border-2 border-sky-500 font-Inconsolata focus:outline-none" />
         <button onClick={addTodo} className="bg-cyan-600 px-3 py-2.1 ml-3 hover:bg-cyan-900 font-Inconsolata text-white">Add</button>
       </div>
-      <div className="grid gap-20 grid-cols-2 mt-3">
+      <div className="grid gap-20 grid-cols-2 mt-3 h-72 overflow-y-scroll">
         {todos?.map((todo,i) => {
          return ( <>
             <span  className="text-white font-Inconsolata">{todo.replace(/\"/g,"")}</span>

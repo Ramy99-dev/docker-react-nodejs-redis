@@ -18,21 +18,39 @@ app.use(express.json())
 
 
 app.post('/', async (req,res)=>{
-    await client.lPush('todo',req.body.todo)
-    res.send("added Successfully")
-})
-
-
-
-app.get('/', (req ,res)=>{
-    const data = await client.lRange('todo',0,-1);
-    res.send(data)
+    try
+    {
+        await client.lPush('todo',req.body.todo)
+        res.send("added Successfully")
+    }
+    catch(err){
+        console.log(err)
+    }
     
 })
 
-app.delete('/', (req ,res)=>{
+
+
+app.get('/', async (req ,res)=>{
+    try{
+        const data = await client.lRange('todo',0,-1);
+        res.send(data)
+    }
+    catch(err){
+        console.log(err)
+    }
     
     
+})
+
+app.delete('/', async (req ,res)=>{
+    try{
+        await client.lRem('todo',0,req.body.todo)
+        res.send("Deleted Successfully")
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 
 app.listen(7082,()=>{
