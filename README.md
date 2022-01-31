@@ -1,7 +1,7 @@
 Demo of dockerizing simple react todo app
 
 To run locally :
-<h3>prerequisite</h3>
+<h3>Prerequisite</h3>
 Docker installed <br/><br/>
 
 1. Go to the server directory
